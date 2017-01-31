@@ -59,14 +59,12 @@
 </style>
 
 <script>
-import Vue from 'vue'
-import {loginLogout} from '../js/mixins'
 var serialize = require('form-serialize')
 var request = require('superagent')
 
+// TODO: fix all this
 export default {
   name: 'SignUp',
-  mixins: [loginLogout],
   methods: {
     submit: function () {
       console.log(this.errors)
@@ -79,7 +77,7 @@ export default {
         this.response = this.error ? res.body.message : (res.text === '' ? 'success' : res.text)
         if (!this.error && this.$route.query.next) {
           this.login()
-          this.$route.router.push({path: this.$route.query.next})
+          this.$router.push({path: this.$route.query.next})
         }
       })
     }
